@@ -1,0 +1,6 @@
+interface:
+  display_name: "Quicksilver Skill"
+  aliases:
+    - "qs-skill"
+  short_description: "Quicksilver workflow helper skill"
+  default_prompt: "Use $quicksilver-skill to help with a Quicksilver task."

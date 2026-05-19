@@ -1,0 +1,23 @@
+package {Package};
+
+import java.util.UUID;
+
+import {Package}.dao.{UnitCode}Dao;
+import {Package}.service.{UnitCode}Service;
+import com.jeedsoft.quicksilver.registry.Registry;
+
+public class {UnitCode}Home
+{
+	public static final UUID UNIT_ID = UUID.fromString("{UnitId}");
+	public static final String CACHE_REGION = "{CacheRegion}";
+
+	public static {UnitCode}Dao getDao()
+	{
+		return Registry.getDao(UNIT_ID);
+	}
+
+	public static {UnitCode}Service getService()
+	{
+		return Registry.getService(UNIT_ID);
+	}
+}

@@ -1,0 +1,8 @@
+package {Package}.api;
+
+import com.jeedsoft.quicksilver.base.api.{Base}Api;
+import {Package}.model.{UnitCode}Model;
+
+public interface {UnitCode}Api extends {Base}Api<{UnitCode}Model>
+{
+}

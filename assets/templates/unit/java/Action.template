@@ -1,0 +1,8 @@
+package {Package}.action;
+
+import com.jeedsoft.quicksilver.base.action.{Base}Action;
+import {Package}.model.{UnitCode}Model;
+
+public interface {UnitCode}Action extends {Base}Action<{UnitCode}Model>
+{
+}

@@ -1,0 +1,14 @@
+package {Package}.api.impl;
+
+import com.jeedsoft.quicksilver.base.api.impl.{Base}ApiImpl;
+import {Package}.{UnitCode}Home;
+import {Package}.api.{UnitCode}Api;
+import {Package}.model.{UnitCode}Model;
+
+public class {UnitCode}ApiImpl extends {Base}ApiImpl<{UnitCode}Model> implements {UnitCode}Api
+{
+	public {UnitCode}ApiImpl()
+	{
+		super({UnitCode}Home.UNIT_ID, {UnitCode}Model.class);
+	}
+}

@@ -1,0 +1,14 @@
+package {Package}.dao.impl;
+
+import com.jeedsoft.quicksilver.base.dao.impl.{Base}DaoImpl;
+import {Package}.{UnitCode}Home;
+import {Package}.dao.{UnitCode}Dao;
+import {Package}.model.{UnitCode}Model;
+
+public class {UnitCode}DaoImpl extends {Base}DaoImpl<{UnitCode}Model> implements {UnitCode}Dao
+{
+	public {UnitCode}DaoImpl()
+	{
+		super({UnitCode}Home.UNIT_ID, {UnitCode}Model.class);
+	}
+}

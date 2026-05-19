@@ -1,0 +1,15 @@
+.DS_Store
+.idea/
+.vscode/
+*.log
+*.tmp
+*.swp
+*~
+
+# Local caches and generated artifacts
+.cache/
+build/
+dist/
+node_modules/
+__pycache__/
+*.pyc

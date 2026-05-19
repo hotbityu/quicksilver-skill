@@ -1,0 +1,8 @@
+package {Package}.service;
+
+import com.jeedsoft.quicksilver.base.service.{Base}Service;
+import {Package}.model.{UnitCode}Model;
+
+public interface {UnitCode}Service extends {Base}Service<{UnitCode}Model>
+{
+}

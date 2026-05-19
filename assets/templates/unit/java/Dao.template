@@ -1,0 +1,8 @@
+package {Package}.dao;
+
+import com.jeedsoft.quicksilver.base.dao.{Base}Dao;
+import {Package}.model.{UnitCode}Model;
+
+public interface {UnitCode}Dao extends {Base}Dao<{UnitCode}Model>
+{
+}

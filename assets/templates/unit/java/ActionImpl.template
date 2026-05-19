@@ -1,0 +1,14 @@
+package {Package}.action.impl;
+
+import com.jeedsoft.quicksilver.base.action.impl.{Base}ActionImpl;
+import {Package}.{UnitCode}Home;
+import {Package}.action.{UnitCode}Action;
+import {Package}.model.{UnitCode}Model;
+
+public class {UnitCode}ActionImpl extends {Base}ActionImpl<{UnitCode}Model> implements {UnitCode}Action
+{
+	public {UnitCode}ActionImpl()
+	{
+		super({UnitCode}Home.UNIT_ID, {UnitCode}Model.class);
+	}
+}

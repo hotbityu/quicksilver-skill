@@ -1,0 +1,34 @@
+package {Package}.model;
+
+import java.io.Serial;
+import java.sql.ResultSet;
+
+import org.json.JSONObject;
+
+import com.jeedsoft.quicksilver.base.model.{Base}Model;
+import com.jeedsoft.common.advanced.db.dataset.Record;
+
+public class {UnitCode}Model extends {Base}Model
+{
+    @Serial
+	private static final long serialVersionUID = 1L;
+
+	public {UnitCode}Model()
+	{
+	}
+
+	public {UnitCode}Model(Record r)
+	{
+		super(r);
+	}
+
+	public {UnitCode}Model(ResultSet rs)
+	{
+		super(rs);
+	}
+
+	public {UnitCode}Model(JSONObject json)
+	{
+		super(json);
+	}
+}
