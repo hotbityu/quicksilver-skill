@@ -44,6 +44,17 @@ Use this sub-skill when the user asks to add, modify, delete, or generate a QS u
 - Treat add, modify, and delete as separate operations: add creates the unit files, modify updates the existing unit files in place, and delete removes or disables the unit according to the target project's established convention.
 - Ask for missing unit code, unit name, table name, fields, module name, base class, or delete semantics only when they cannot be inferred from the target project.
 
+### Text Resource
+
+Use this when the user asks to add, modify, or delete QS text resources for i18n.
+
+- `TsTextResource` stores base i18n text resources. Frontend/backend code references `FCode`, and QS resolves `FValue` by the current language through the system i18n mechanism.
+- Text resource codes normally start with `T.` for text/UI resources or `E.` for error/exception messages.
+- For add SQL, require `FCode` and `FValue`, generate a fresh UUID, and use `insert into TsTextResource set FId='<uuid>', FCode='<code>', FValue='<value>';`.
+- For modify SQL, require `FCode` and the new `FValue`, and generate `update TsTextResource set FValue='<value>' where FCode='<code>';`.
+- For delete SQL, the user-provided target may be either `FCode` or `FValue`. Treat values matching `T.*` or `E.*` as `FCode`. For ordinary text, search existing SQL for a matching `TsTextResource.FValue`; if one matching resource is found, delete by its `FCode`. If none or multiple are found, report that and only use `where FValue='<value>'` when the user wants value-based deletion.
+- Escape single quotes in SQL string values by doubling them.
+
 ## Template Layout
 
 - `assets/templates/create-qs-project/parent/`: templates for the QS parent project root.

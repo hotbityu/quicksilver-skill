@@ -107,6 +107,47 @@ If the target directory has no existing `.sql` files, infer the filename prefix 
 
 If `init.sql` exists anywhere under the selected module project's `src/main/resources/QS-MODULE/data/sql/default` tree, also add the newly generated unit SQL to that `init.sql` so the module's initial database seed stays in sync with the incremental SQL file. Preserve existing `init.sql` content and append or merge the new unit section following nearby unit-section formatting.
 
+## Text Resource SQL
+
+`TsTextResource` is the QS base i18n resource table. It stores text that frontend code, backend exceptions, unit metadata, and base data can reference by stable `FCode`. At runtime QS resolves `FValue` to the current language through the system i18n mechanism. The `Qs.TextResource` unit uses `FUseSystemI18nTable=1`, and `TsTextResource.FValue` is an i18n-enabled field.
+
+Use this focused workflow when the user asks to add, modify, or delete text resources rather than a whole unit.
+
+Inputs:
+
+- `FCode`: required. Codes normally start with `T.` for text/UI resources or `E.` for error/exception messages, for example `T.Public.OK` or `E.Basic.File.NotFound`.
+- `FValue`: required for add and modify. This is the default text, often traditional Chinese in QS base data.
+
+Generation rules:
+
+- For add, generate a fresh UUID for `FId`.
+- For add, use `insert into TsTextResource set FId='<uuid>', FCode='<code>', FValue='<value>';`.
+- For modify, prefer `where FCode='<code>'` because `FCode` is the stable external reference and has a unique constraint.
+- For delete, the user may identify the target by `FCode` or by displayed/default text `FValue`. Treat a target matching the usual `T.*` or `E.*` resource-code pattern as `FCode`.
+- For an ordinary-text delete target, first search existing SQL under the selected module project's `src/main/resources/QS-MODULE/data/sql/default` tree, and the QS base `init.sql` when relevant, for `insert into TsTextResource` statements with matching `FValue`.
+- If exactly one matching `FValue` resource is found, generate delete SQL using that row's `FCode`, not `FValue`.
+- If no matching resource is found, say that the text resource code could not be resolved. Only generate `delete from TsTextResource where FValue='<value>';` if the user explicitly wants value-based deletion or asks for a fallback SQL.
+- If multiple matching resources are found, list the matching `FCode` values and ask the user which one should be deleted.
+- For delete by code, generate `delete from TsTextResource where FCode='<code>';`.
+- For fallback delete by value, generate `delete from TsTextResource where FValue='<value>';`.
+- If both `FCode` and `FValue` are supplied, delete by `FCode` and include `FValue` only as a comment if useful.
+- Escape single quotes in `FCode` and `FValue` by doubling them.
+- Preserve placeholders such as `${0}` in `FValue`.
+- If the user provides multiple `FCode = FValue` pairs, generate one statement per pair in the same order.
+
+Examples:
+
+```sql
+insert into TsTextResource set FId='<uuid>', FCode='T.Public.OK', FValue='確定';
+
+update TsTextResource set FValue='確認' where FCode='T.Public.OK';
+
+delete from TsTextResource where FCode='T.Public.OK';
+
+-- fallback only when FCode cannot be resolved or the user explicitly requests value-based deletion
+delete from TsTextResource where FValue='確定';
+```
+
 ## Template Rendering
 
 Replace all placeholders before writing generated files:
