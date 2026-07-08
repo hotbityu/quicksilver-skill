@@ -1,0 +1,30 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        maven {
+            allowInsecureProtocol = true
+            url "$nexus_repository/maven-public/"
+        }
+    }
+	dependencies {
+        classpath 'com.jeedsoft:quicksilver-gradle-plugin:<qs-version>'
+    }
+}
+
+project.ext.name = '<parent-project-name>'
+
+apply plugin: 'quicksilver-parent'
+
+allprojects {sub ->
+
+	group = 'com.chainsea'
+	version = '1.0.0'
+
+	repositories {
+        mavenCentral()
+        maven {
+            allowInsecureProtocol = true
+            url "$nexus_repository/maven-public/"
+        }
+	}
+}

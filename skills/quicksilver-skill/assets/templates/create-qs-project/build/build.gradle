@@ -1,0 +1,4 @@
+quicksilver.build {
+    productName = '<parent-project-name>'
+    archiveName = '<parent-project-name>'
+}

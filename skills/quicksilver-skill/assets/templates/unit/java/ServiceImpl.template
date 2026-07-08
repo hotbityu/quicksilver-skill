@@ -1,0 +1,14 @@
+package {Package}.service.impl;
+
+import com.jeedsoft.quicksilver.base.service.impl.{Base}ServiceImpl;
+import {Package}.{UnitCode}Home;
+import {Package}.service.{UnitCode}Service;
+import {Package}.model.{UnitCode}Model;
+
+public class {UnitCode}ServiceImpl extends {Base}ServiceImpl<{UnitCode}Model> implements {UnitCode}Service
+{
+	public {UnitCode}ServiceImpl()
+	{
+		super({UnitCode}Home.UNIT_ID, {UnitCode}Model.class);
+	}
+}
