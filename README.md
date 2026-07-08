@@ -5,12 +5,6 @@
 ## 安裝
 
 ```bash
-npx skills add https://github.com/hotbityu/quicksilver-skill/tree/main/skills/quicksilver-skill
-```
-
-也可以从仓库安装指定 skill：
-
-```bash
 npx skills add hotbityu/quicksilver-skill --skill quicksilver-skill
 ```
 
